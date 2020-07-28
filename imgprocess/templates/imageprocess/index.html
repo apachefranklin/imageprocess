@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br />
+<div class="container">
+    <div class="row image-operation-card">
+        <div class="col-lg-3 col-12">
+            <a class="nav-link" href="{% url 'imageprocess:luminecance' %}">
+                <div class="card shadow-lg border-0">
+                    
+                    <h3>LUMINECANCE</h3>
+                    
+                </div>        
+            </a>
+
+        </div>
+        <!--constrates-->
+
+        <div class="col-lg-3 col-12">
+            <a class="nav-link" href="">
+                <div class="card shadow-lg border-0">
+                    
+                    <h3>CONSTRATE</h3>
+                    
+                </div>        
+            </a>
+        </div>
+
+        <!-- Transformation lieneaire -->
+        <div class="col-lg-6 col-12 shadow-lg">
+            <h3>Transformation lineaire</h3>
+            <div class="row">
+                <div class="col-lg-4 col-6 col-md col-sm">
+                    <a class="nav-link" href="">
+                        <div class="card shadow border-0">
+                                Simple
+                        </div>        
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-6 col-md col-sm">
+                    <a class="nav-link" href="">
+                        <div class="card shadow border-0">
+                            SATURATION
+                        </div>        
+                    </a>
+                </div>
+                
+                <div class="col-lg-4 col-6 col-md col-sm">
+                    <a class="nav-link" href="">
+                        <div class="card shadow border-0">
+                            MORCEAU
+                        </div>        
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-6 col-md col-sm">
+                    <a class="nav-link" href="">
+                        <div class="card shadow border-0">
+                            NON lieneaire
+                        </div>        
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

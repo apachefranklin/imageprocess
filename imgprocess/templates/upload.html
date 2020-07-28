@@ -1,0 +1,21 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Welcome to first upload</title>
+        <script type="text/javascript" src="{% static 'shared/js/librairies/jquery-3.5.1.min.js' %}"></script>
+    </head>
+    <body>
+        <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+            {{form}}
+            <button type="submit">Uploader</button>
+        </form>
+        <script type="text/javascript">
+            $(function(){
+                alert("Welcome to imageprocess")
+            });
+        
+        </script>
+    </body>
+</html>
