@@ -22,122 +22,34 @@ h1, h2, h3, h4, h5, h6, .worksans, .worksans * {
     font-family: 'Work Sans', sans-serif !important;
 }
 
-.main-color {
-    background-color: #060d3b;
-    background-color: rgb(6, 13, 59);
-}
-
-.second-color {
-    background-color: #c73434;
-    background-color: rgb(199, 52, 52);
-}
-
-.second-color-text, .second-color-text a, .second-color-text.navbar-nav .nav-link {
-    color: rgb(199, 52, 52);
-}
-
-.main-color-text, .main-color-text a, .main-color-text.navbar-nav .nav-link {
-    color: #060d3b;
-}
-
-.third-color {
-    background-color: #a1a1a1;
-    background-color: rgb(161, 161, 161);
-}
-.stat-card .row .card {
-    height: 150px;
-    vertical-align: middle;
-    text-align: center;
-    padding-top: 25%;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-::placeholder{
-    color: #BaB3B3 !important;
-    color : rgba(186,179,179,0.7) !important;
-}
-
-input:focus{
-    border-top: 0px ;
-    border-left: 0px ;
-    border-right: 0px ;
-    border-bottom: 2px ;
-    border-bottom-color:#060d3b;
-    
-}
-
-.title-text {
-    text-align: justify;
-    text-decoration: white;
-    text-shadow: #060d3b;
-    font-size: 40px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin: 10px;
-    
-}
-.next:hover{
- background-color: #060d3b;
-}
-.border-right-none{
-    border-right-width: 0px;
-}
-.border-left-none
-{
-    border-left-width: 0px;
-}
-.already:hover{
-    color: #c73434 ;
-
-}
-
-@media(min-width:768px)
-{
-    .logo_blanc{
-      margin-top: 0px;
-      top: 0px;
-      
-    }
-    .row
-    {
-      margin-top: 20px;
-    }
-    .white-part
-    {
-        top: 0px;
-    }
-    body
-    {
-     width: 100%;
-    }
-
-}
-.inputLogin {
-    
-    padding-left: 3rem;
-    border-left: 1px solid rgb(206, 212, 218) !important;
-    border-top-left-radius: 4px !important;
-    border-bottom-left-radius: 4px !important;
-    transition: 0.2s ease-in border;
-}
-.inputLogin:focus {
+.image-preview,.btn-image-previews,.btn-image-preview{
+    display: block !important;
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 4px !important;
+    border: 1px solid #ebebeb !important;
+    background-color:#eeeeee !important;
     box-shadow: none !important;
-    border-bottom: 1px solid #060d3bb3;
-    border-left: none !important;
-    /* border-top-left-radius: 4px !important; */
-    border-radius: 0px !important;
 }
-.iconLogin {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 5;
-    color: #060d3b;
+label.btn-image-preview{
+    line-height: 100px !important;
+    text-align:center;
+    font-size:48px !important;
 }
-.inputloginGroup{
-    position: relative;
+.btn-image-previews{
+    line-height: 100px !important;
+    text-align:center;
+    font-size:48px !important;
+    background-color:#1d0e1d !important;
 }
-.yoyo {
-    margin-top: -2rem;
-    margin-left: -3.2rem;
-    transform: rotate(14deg);
+.remove_image{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.img-list-work .card{
+    height: 300px;
+    background-color: #eeeeee;
 }

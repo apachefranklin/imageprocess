@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+    <br />
+    <div class="container">
+        <h1>Welcome to histogramme egalisation</h1>
+        <hr />
+        <br />
+        <form class="" id="form_upload_image" enctype="multipart/form-data" ajax method="post" action="{% url 'imageprocess:pluminecance' %}">
+        {% csrf_token %}
+        <div class="row">
+        </div>
+        <div class="row img-list-work">
+            <div class="col-6">
+                <h4>Preview</h4>
+                <div class="card border-0 shadow-lg" id="img_preview">
+                    
+                </div>
+                <label>upload image(bmpp)</label>
+                <input type="file" name="imguploaded"  class="form-control form-control-file" onChange="showPreview(this,'#img_preview')" />
+            </div>
+            <div class="col-6">
+                <h4>histogramme Preview</h4>
+                <div class="card border-0 shadow-lg" id="result-box">
+                    
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <label>After click look result down</label><br />
+        <button type="submit" class="btn btn-info rounded btn-lg second-color shadow-lg text-white">EQUALIZE</button>
+        </form>
+    </div>
+    {% endblock %}

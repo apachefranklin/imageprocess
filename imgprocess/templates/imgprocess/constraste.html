@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <br />
+    <div class="container">
+        <h1>Welcome to Contraste test</h1>
+        <hr />
+        <br />
+        <form class="" id="form_upload_image" enctype="multipart/form-data" ajax method="post" action="{% url 'imageprocess:pluminecance' %}">
+        {% csrf_token %}
+        <div class="row">
+        <div class="col-12">
+            <!-- <textarea class="form-control form-control-lg"> -->
+            </textarea>
+        </div>
+            <div class="col">
+                <label>Saturation min</label>
+                <input type="number" name="saturation-min" placeholder="enter min saturation" value="0" max="254" min="0" required="true" class="form-control" />
+            </div>
+            <div class="col">
+                <label>Saturation Max</label>
+                <input type="number" name="saturation-max" placeholder="enter max saturation" value="255" max="255" min="1" required="true" class="form-control" />
+            </div>
+        </div>
+        <div class="row img-list-work">
+            <div class="col-6">
+                <h4>Preview</h4>
+                <div class="card border-0 shadow-lg" id="img_preview">
+                    
+                </div>
+                <label>upload image(bmpp)</label>
+                <input type="file" name="imguploaded"  class="form-control form-control-file" onChange="showPreview(this,'#img_preview')" />
+            </div>
+            <div class="col-6">
+                <h4>Result</h4>
+                <div class="card border-0 shadow-lg" id="result-box">
+                    
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <button type="submit" class="btn btn-info rounded btn-lg second-color shadow-lg text-white">MAKE LUMINECENCE</button>
+        </form>
+    </div>
+{% endblock content %}
