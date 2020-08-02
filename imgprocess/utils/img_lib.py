@@ -81,10 +81,15 @@ class ImgLib:
         #normalisation of probality density
         c_normalize=[[],[]]
         new_image=np.zeros(img_matrix.shape,dtype=int)
-        for i in list(range(1,256)):
-            c_normalize[i-1]=0
-            for j in list(range(i)):
-                pass
+        #Calcul des densite de probabablite
+        c_normalize=np.cumsum(h_normalize)
+
+        for i in range(img_matrix.shape[0]):
+            for j in range(img_matrix.shape[1]):
+                img_matrix[i][j]=c_normalize[img_matrix[i][j]]*255
+        
+        return img_matrix
+
         
                 
 

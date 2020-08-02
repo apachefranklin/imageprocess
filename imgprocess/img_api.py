@@ -8,6 +8,12 @@ from .utils.img_lib import ImgLib
 from .utils.utility import *
 from PIL import Image
 import numpy as np
+from matplotlib import pyplot as plt
+
+img_path="imgprocess/static/imageprocess/images/"
+hist_path=img_path+"hist/"
+hist_path_result=img_path+"histresult/"
+result_path=img_path+"result/"
 
 def _constrate(request):
     image_file=request.FILES["imguploaded"]
@@ -35,4 +41,38 @@ def _constrate(request):
     return JsonResponse({"original_name":str(image_file),"extention":file_extension,"saved_name":saved_name})
 
 def _egalisation_histogramme(request):
-    return JsonResponse({"status":True})
+    """At the end we need to send the preview histogramme, the new histgramme
+    and the final image"""
+    image_info=save_image(request.FILES["imguploaded"],None)
+    
+    #we get the name of the preview_histogramme
+    preview_his_name=get_random_string(20)+image_info["extension"];
+    plt.hist(image_info["list"]);
+
+    plt.savefig(hist_path+preview_his_name)
+    plt.close()
+
+   
+    image_info["preview_hist"]=preview_his_name
+
+    #we call function of equalisation on the matrix of image
+    egalisation_his_matrix=ImgLib().histogram_normalisation(image_info["matrix"])
+    #we get now the new image 
+
+    print(egalisation_his_matrix)
+
+    new_image=Image.fromarray(egalisation_his_matrix.astype(np.uint8))
+    new_image_name=get_random_string(18)+image_info["extension"]
+    new_image.save(result_path+new_image_name)
+
+    #now we reshape our egalisation_his_matirx at the list and we create the plot
+    new_image_as_list=egalisation_his_matrix.ravel()
+    new_his_name=get_random_string(24)+image_info["extension"]
+    plt.plot(new_image_as_list)
+    plt.savefig(hist_path_result+new_his_name);
+    plt.close()
+    image_info["new_hist"]=new_his_name
+    image_info["saved_name"]=new_image_name
+    image_info["matrix"]=None
+    
+    return JsonResponse(image_info)
