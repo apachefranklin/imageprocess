@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+   <h1>Welcome to image operation time,plus,minus, or,xor,and</h1>
+     <hr />
+        <br />
+        <form class="" id="form_make_operation" enctype="multipart/form-data" ajax method="post" action="{% url 'imageprocess:poperation' %}">
+        {% csrf_token %}
+        <div class="row">
+        </div>
+        <div class="row img-list-work">
+            <div class="col-5">
+                <h4>Image One</h4>
+                <div class="row">
+                    <div class="col"><input type="number" step="0.0001" value="1" title="multiplication factor" class="form-control" placeholder="factor. ex: 0.6" name="factor_one" min="0.0" /></div>
+                    <div class="col-5"><button type="submit" class="multiplit_me btn btn-block  btn-primary">times me</button></div>
+                </div>
+                <br />
+                <div class="card border-0 shadow-lg" id="img_preview">
+                    
+                </div>
+                <label>upload image</label>
+                <input required="" type="file" name="imgone"  class="form-control form-control-file" onChange="showPreview(this,'#img_preview')" />
+            </div>
+            <div class="col-2">
+            <br /> <br /> <br /><br /><br /><br />
+            
+            <label>Choose your operation</label>
+                <select name="operation" class="form-control form-control-lg">
+                    <option value="add">Addition</option>
+                    <option value="minus">Soustraction</option>
+                    <!-- <option value="not">not</option> -->
+                    <option value="or">Or</option>
+                    <option value="and">And</option>
+                </select>
+                <br />
+                <div class="text-center">
+                     <button type="submit" class="btn btn-info rounded btn-lg second-color shadow-lg text-white align-content-center">MAKE</button>
+                </div>
+                 
+            </div>
+            <div class="col-5">
+                <h4>Image two</h4>
+                <div class="row">
+                    <div class="col"><input type="number" value="1" title="multiplication factor" class="form-control" placeholder="factor. ex: 0.6" name="factor_two" step="0.0001" min="0.0" /></div>
+                    <div class="col-5"><button type="submit" class="multiplit_me btn btn-block  btn-primary">times me</button></div>
+                </div>
+                <br />
+                <div class="card border-0 shadow-lg" id="second-image">
+                    
+                </div>
+                <label>upload image</label>
+                <input type="file" required="" name="imgtwo"  class="form-control form-control-file" onChange="showPreview(this,'#second-image')" />
+            </div>
+            <!--result with histogramme -->
+            <div class="col-12">
+            <br />
+                <h4>Result of operation</h4>
+                <div class="card border-0 shadow-lg" id="result-box">
+                    
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+      
+        </form>
+</div>
+ 
+{% endblock content %}

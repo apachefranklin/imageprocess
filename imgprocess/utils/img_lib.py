@@ -90,7 +90,66 @@ class ImgLib:
         
         return img_matrix
 
-        
+
+    def add_two_image(self,img_matrix1,img_matrix2,mult_fact_1=1,mult_fact_2=1):
+        """That function take two image matrix in parameter, supooe to be the same and 
+        make the summ"""
+        dimension=img_matrix1.shape
+        new_matrix=np.zeros(dimension)
+        for i in range(dimension[0]):
+            for j in range(dimension[1]):
+                pixel=img_matrix1[i][j]*mult_fact_1+img_matrix2[i][j]*mult_fact_2
+                if(pixel>255):
+                    pixel=255
+                new_matrix[i][j]=pixel
+        return new_matrix
+    
+    def subtract_two_image(self,img_matrix1,img_matrix2,mult_fact_1=1,mult_fact_2=1):
+        """That function take two image matrix in parameter, supooe to be the same and 
+        make the subtraction"""
+        dimension=img_matrix1.shape
+        new_matrix=np.zeros(dimension)
+        for i in range(dimension[0]):
+            for j in range(dimension[1]):
+                pixel=img_matrix1[i][j]*mult_fact_1-img_matrix2[i][j]*mult_fact_2
+                if(pixel<0):
+                    pixel=0
+                new_matrix[i][j]=pixel
+        return new_matrix       
+    
+    def or_operation(self,img_matrix1,img_matrix2):
+        """Take to image matrix and make the or operation"""
+        dimension=img_matrix1.shape
+        new_matrix=np.zeros(dimension)
+        for i in range(dimension[0]):
+            for j in range(dimension[1]):
+                new_matrix[i][j]=int(img_matrix1[i][j])|int(img_matrix2[i][j])
+        return new_matrix
+
+    def and_operation(self,img_matrix1,img_matrix2):
+        """Take to image matrix and make the and operation"""
+        dimension=img_matrix1.shape
+        new_matrix=np.zeros(dimension)
+        for i in range(dimension[0]):
+            for j in range(dimension[1]):
+                new_matrix[i][j]=int(img_matrix1[i][j]) & int(img_matrix2[i][j])
+        return new_matrix
+
+    def convolution(self,img_matrix,convolution_matrix):
+        """That function take the matrix of image and convolution"""
+        pass
+
+    def get_delay(self,pusblish_time,current_time):
+        passed_time=current_time-pusblish_time
+
+        durree=passed_time/60
+        if((passed_time/60)<1):
+            return "pusblish now"
+        elif(durree>1 and durree<5):
+            return "<5mn"
+        elif((durree/60)>=1):
+            return "il ya une heure"
+                     
                 
 
 

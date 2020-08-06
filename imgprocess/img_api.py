@@ -76,3 +76,38 @@ def _egalisation_histogramme(request):
     image_info["matrix"]=None
     
     return JsonResponse(image_info)
+
+
+#api for make addifiton of image
+def _make_operation(request):
+    image_info_1=save_image(request.FILES["imgone"],None)
+    image_info_2=save_image(request.FILES["imgtwo"],None)
+    reshapes_matrix=get_same_matrix(image_info_1["matrix"],image_info_2["matrix"])
+    mult_fact_1=float(request.POST.get("factor_one",1))
+    mult_fact_2=float(request.POST.get("factor_two",1))
+    #print(reshapes_matrix["matrix1"].shape)
+    #print(reshapes_matrix["matrix2"].shape)
+    #print("before")
+    #print(image_info_1["matrix"].shape)
+    #print(image_info_2["matrix"].shape)
+    operation=request.POST["operation"]
+    matrix1=reshapes_matrix["matrix1"]
+    matrix2=reshapes_matrix["matrix2"]
+    if(operation=="add"):
+        new_img_matrix=ImgLib().add_two_image(matrix1,matrix2,mult_fact_1,mult_fact_2)
+    elif(operation=="or"):
+        new_img_matrix=ImgLib().or_operation(matrix1,matrix2)
+    elif(operation=="and"):
+        new_img_matrix=ImgLib().and_operation(matrix1,matrix2)
+    else:
+        new_img_matrix=ImgLib().subtract_two_image(reshapes_matrix["matrix1"],reshapes_matrix["matrix2"],mult_fact_1,mult_fact_2)
+    
+    new_img_matrix=new_img_matrix.astype(np.uint8)
+    new_img=Image.fromarray(new_img_matrix)
+
+    new_image_name=get_random_string(random.randint(15,20))+image_info_1["extension"]
+    new_img.save(result_path+new_image_name)
+
+    image_info_1["matrix"]=None
+    image_info_1["saved_name"]=new_image_name
+    return JsonResponse(image_info_1)

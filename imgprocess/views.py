@@ -14,17 +14,8 @@ import numpy as np
 def index(request):
     return render(request,"imgprocess/index.html")
 
-
-
-
 def constraste(request):
     return render(request,"imgprocess/constraste.html")
-
-
-
-
-
-
 
 
 def upload_file(request):
@@ -37,9 +28,11 @@ def upload_file(request):
         form = UploadFileForm()
     return render(request, 'upload.html', {'form': form})
 
-
-
 #vu egalisation de l'histogramme
 
 def egalisation_histogramme(request):
     return render(request,"imgprocess/egalisation_histogramme.html",{})
+
+
+def basic_operation(request):
+    return render(request,"imgprocess/image_operation.html")
