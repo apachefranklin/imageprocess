@@ -4,7 +4,10 @@
 __pycache__/*
 migrations/*
 */migrations/
-*/static/imageprocess/images/
+*.jpg
+*.png
+*.pgm
+*.jpeg
 *.py[cod]
 *$py.class
 

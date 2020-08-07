@@ -111,3 +111,27 @@ def _make_operation(request):
     image_info_1["matrix"]=None
     image_info_1["saved_name"]=new_image_name
     return JsonResponse(image_info_1)
+
+
+def _convolution(request):
+    """take all data come from convolution page and make all operation
+    about convolution, now we consider only the 3*3 convolution matrix"""
+    conv_field=request.POST["convolution_matrix"]
+    conv_field=conv_field.split("\r\n")
+    conv_matrix=np.zeros((3,3))
+    for i in range(len(conv_field)):
+        elts=conv_field[i].split()
+        elts=[float(elt) for elt in elts]
+        conv_matrix[i,]=elts
+    image_info=save_image(request.FILES["imguploaded"],img_path)
+    new_img_matrix=ImgLib().convolution(image_info["matrix"],conv_matrix)
+
+    new_img_matrix=new_img_matrix.astype(np.uint8)
+    new_img=Image.fromarray(new_img_matrix)
+
+    new_image_name=get_random_string(random.randint(15,20))+image_info["extension"]
+    new_img.save(img_path+new_image_name)
+
+    image_info["matrix"]=None
+    image_info["saved_name"]=new_image_name
+    return JsonResponse(image_info)

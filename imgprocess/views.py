@@ -36,3 +36,7 @@ def egalisation_histogramme(request):
 
 def basic_operation(request):
     return render(request,"imgprocess/image_operation.html")
+
+
+def convolution(request):
+    return render(request,"imgprocess/convolution.html")

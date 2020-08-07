@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br />
+<br />
+    <div class="container">
+        <h3>Welcome to convolution</h3>
+        <hr />
+        <form class="" id="form_make_convolution" enctype="multipart/form-data"  method="post" action="{% url 'imageprocess:pconvolution' %}">
+        {% csrf_token %}
+        <div class="row">
+        </div>
+        <div class="row img-list-work">
+            <div class="col-6">
+                <h4>Preview</h4>
+                <div class="card border-0 shadow-lg" id="img_preview">
+                    
+                </div>
+                <label>upload image</label>
+                <input type="file" name="imguploaded"  class="form-control form-control-file" onChange="showPreview(this,'#img_preview')" />
+            </div>
+            <div class="col-6">
+                <h4>Masque de convolution</h4>
+                <div class="card border-0 shadow-lg" id="img_preview">
+                <textarea class="form-control form-control-lg" name="convolution_matrix" placeholder="Enter the convolution mask" width="100%" height="100%"></textarea>    
+                </div>
+                
+            </div>
+            <div class="col">
+             <br />
+             <button type="submit" class="btn btn-info rounded btn-lg second-color shadow-lg text-white">MAKE CONVOLUTION</button>
+            <br />        <br />
+            <h4>Result</h4>
+                <div class="card border-0 shadow-lg" id="result-box">
+                    
+                </div>
+            </div>
+        </div>
+       
+        </form>
+    </div>
+{% endblock content %}

@@ -85,7 +85,26 @@ $(function (e) {
         });
         return false;
     });
-
+   
+    $("#form_make_convolution").submit(function () {
+        form_data = new FormData(this)
+        $.ajax({
+            url: $(this).attr("action"),
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: "json",
+            method: "POST",
+            success: function (result) {
+                $("#result-box").html("<img src='/static/imageprocess/images/" + result["saved_name"] + "' width='100%' height='100%' />");
+            },
+            error: function (result) {
+                console.log("error");
+            }
+        });
+        return false;
+    });
 
 });
 

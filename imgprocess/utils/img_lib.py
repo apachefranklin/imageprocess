@@ -135,9 +135,23 @@ class ImgLib:
                 new_matrix[i][j]=int(img_matrix1[i][j]) & int(img_matrix2[i][j])
         return new_matrix
 
-    def convolution(self,img_matrix,convolution_matrix):
-        """That function take the matrix of image and convolution"""
-        pass
+    def convolution(self,img_matrix,kernel):
+        """That function take the matrix of image and convolution
+        The principe of convolution is to make translation of convolution matrix
+        on the img matrix, at each time, the center of submatrix take the sum of all  values multiplity
+        of arround pixel with the convolution matrix
+        @img_matrix must be an numpy array
+        @kernel matrix must be an numpy array"""
+
+        dimension=img_matrix.shape
+        new_img_matrix=np.zeros(dimension)
+        #We need to know were will be the center of convolution
+        #now we will consider only 3*3 convolution matrix
+        for i in range(1,dimension[0]-1):
+            for j in range(1,dimension[1]-1):
+                p_pixel=img_matrix[i-1][j-1]*kernel[0][0]+img_matrix[i-1,j]*kernel[0][1]+img_matrix[i-1,j+1]*kernel[0][2]+img_matrix[i,j-1]*kernel[1][0]+img_matrix[i][j]*kernel[1][1]+img_matrix[i][j+1]*kernel[1,2]+img_matrix[i+1][j-1]*kernel[2][0]+img_matrix[i+1][j]*kernel[2][1]+img_matrix[i+1,j+1]*kernel[2][2]
+                new_img_matrix[i][j]=p_pixel
+        return new_img_matrix
 
     def get_delay(self,pusblish_time,current_time):
         passed_time=current_time-pusblish_time
