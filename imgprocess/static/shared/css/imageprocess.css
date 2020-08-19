@@ -67,6 +67,8 @@ label.btn-image-preview{
 }
 
 img:not(.viewver){
-    cursor: -moz-zoom-in;
+    cursor: crosshair;
     cursor:zoom-in;
+    -moz-cursor:zoom-in;
+    -moz-cursor:-moz-zoom-in;
 }

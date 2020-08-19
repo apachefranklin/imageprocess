@@ -5,6 +5,7 @@ app_name="imageprocess"
 
 urlpatterns=[
     path("home",views.index,name="home"),
+    path("about",views.author,name="about"),
     path("constrate",views.constraste,name="constraste"),
     path("performconstrate",img_api._constrate,name="pluminecance"),
 
@@ -13,5 +14,8 @@ urlpatterns=[
     path("two_image_operation",views.basic_operation,name="operation"),
     path("poperation",img_api._make_operation,name="poperation"),
     path("convolution",views.convolution,name="convolution"),
-    path("pconvolution",img_api._convolution,name="pconvolution")
+    path("pconvolution",img_api._convolution,name="pconvolution"),
+
+    path("interpolation",views.interpolation,name="interpolation"),
+    path("pinterpolation",img_api._interpolation,name="pinterpolation")
 ]

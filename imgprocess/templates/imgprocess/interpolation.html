@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <br />
+    <div class="container">
+        <h1>Welcome to Interpolation</h1>
+        <hr />
+        <br />
+        <form class="" id="form_upload_image" enctype="multipart/form-data"  method="post" action="{% url 'imageprocess:pinterpolation' %}">
+        {% csrf_token %}
+        <div class="row">
+        <div class="col-12">
+            <!-- <textarea class="form-control form-control-lg"> -->
+            </textarea>
+        </div>
+            <div class="col">
+                <label>Zoom factor</label>
+                <input type="number" name="zoom-factor" placeholder="enter the zoom factor" value="1" max="254" min="1" required="true" class="form-control" />
+            </div>
+        </div>
+        <div class="row img-list-work">
+            <div class="col-6">
+                <h4>Preview</h4>
+                <div class="card border-0 shadow-lg" id="img_preview">
+                    
+                </div>
+                <label>upload image</label>
+                <input type="file" name="imguploaded"  class="form-control form-control-file" onChange="showPreview(this,'#img_preview')" />
+            </div>
+            <div class="col-6">
+                <h4>Result</h4>
+                <div class="card border-0 shadow-lg" id="result-box">
+                    
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <button type="submit" class="btn btn-info rounded btn-lg second-color shadow-lg text-white">BASIC INTERPOLATION</button>
+        </form>
+    </div>
+{% endblock content %}

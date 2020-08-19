@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,FileResponse
 
 import os
 from .form import UploadFileForm
@@ -10,6 +10,8 @@ from PIL import Image
 import numpy as np
 # Create your views here.
 
+def download_file(request,path):
+    pass
 
 def index(request):
     return render(request,"imgprocess/index.html")
@@ -40,3 +42,9 @@ def basic_operation(request):
 
 def convolution(request):
     return render(request,"imgprocess/convolution.html")
+
+def author(request):
+    return render(request,"about.html")
+
+def interpolation(request):
+    return render(request,"imgprocess/interpolation.html")
