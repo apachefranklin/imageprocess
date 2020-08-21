@@ -10,6 +10,14 @@ function showPreview(objFileInput, html_element) {
 
 
 $(function (e) {
+    //on va forcer le telechargement des fichiers pgm
+    $("#download-pgm-result").click(function(){
+        var dname=$(this).attr("data-download")
+        $.get($(this).attr("data-url"),{download_name:dname},function(e){
+            console.log("bojnour")
+        });
+    });
+
     $("#image-viewver").hide();
     $("#image-viewver").click(function () {
         $(this).fadeOut(1000)
@@ -32,6 +40,7 @@ $(function (e) {
             success: function (result) {
                 console.log(result);
                 $("#result-box").html("<img src='/static/imageprocess/images/result/" + result["saved_name"] + "' width='100%' height='100%' />");
+                $("#download-pgm-result").attr("data-download",result["pgm_name"])
             },
             error: function (result) {
                 console.log("error");

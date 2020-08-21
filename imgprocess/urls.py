@@ -17,5 +17,8 @@ urlpatterns=[
     path("pconvolution",img_api._convolution,name="pconvolution"),
 
     path("interpolation",views.interpolation,name="interpolation"),
-    path("pinterpolation",img_api._interpolation,name="pinterpolation")
+    path("pinterpolation",img_api._interpolation,name="pinterpolation"),
+    path("download",views.download_file,name="download"),
+    path("median_filter",views.median_filter,name="median"),
+    path("pmedian_filter",img_api._median_filter,name="pmedian")
 ]

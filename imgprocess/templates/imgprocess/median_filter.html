@@ -4,10 +4,10 @@
 {% block content %}
     <br />
     <div class="container">
-        <h1>Welcome to Contraste test</h1>
+        <h1>Welcome to median filter</h1>
         <hr />
         <br />
-        <form class="" id="form_upload_image" enctype="multipart/form-data" ajax method="post" action="{% url 'imageprocess:pluminecance' %}">
+        <form class="" id="form_upload_image" enctype="multipart/form-data" method="post" action="{% url 'imageprocess:pmedian' %}">
         {% csrf_token %}
         <div class="row">
         <div class="col-12">
@@ -15,12 +15,9 @@
             </textarea>
         </div>
             <div class="col">
-                <label>Saturation min</label>
-                <input type="number" name="saturation-min" placeholder="enter min saturation" value="0" max="254" min="0" required="true" class="form-control" />
-            </div>
-            <div class="col">
-                <label>Saturation Max</label>
-                <input type="number" name="saturation-max" placeholder="enter max saturation" value="255" max="255" min="1" required="true" class="form-control" />
+                <label>Neighborhood</label>
+                <input type="number" name="voisinage" placeholder="
+                neighborhood of 3 means 3x3 so 9" value="0" max="254" min="0" required="true" class="form-control" />
             </div>
         </div>
         <div class="row img-list-work">
@@ -29,7 +26,7 @@
                 <div class="card border-0 shadow-lg" id="img_preview">
                     
                 </div>
-                <label>upload image(bmpp)</label>
+                <label>upload image</label>
                 <input type="file" name="imguploaded"  class="form-control form-control-file" onChange="showPreview(this,'#img_preview')" />
             </div>
             <div class="col-6">
@@ -42,7 +39,7 @@
         </div>
         <br />
         <br />
-        <button type="submit" class="btn btn-info rounded btn-lg second-color shadow-lg text-white">MAKE LUMINECENCE</button>
+        <button type="submit" class="btn btn-info rounded btn-lg second-color shadow-lg text-white">MEDIAN FILTER</button>
         </form>
     </div>
 {% endblock content %}

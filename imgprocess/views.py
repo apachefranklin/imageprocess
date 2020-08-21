@@ -10,8 +10,11 @@ from PIL import Image
 import numpy as np
 # Create your views here.
 
-def download_file(request,path):
-    pass
+def download_file(request):
+    file_name=request.GET["download_name"]
+    response =FileResponse(open(result_path+file_name,"r"))
+    
+    return response
 
 def index(request):
     return render(request,"imgprocess/index.html")
@@ -48,3 +51,6 @@ def author(request):
 
 def interpolation(request):
     return render(request,"imgprocess/interpolation.html")
+
+def median_filter(request):
+    return render(request,"imgprocess/median_filter.html")

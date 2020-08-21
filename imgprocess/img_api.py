@@ -136,7 +136,7 @@ def _convolution(request):
         conv_matrix[i,]=elts
         
     image_info=save_image(request.FILES["imguploaded"],img_path)
-    new_img_matrix=ImgLib().convolution(image_info["matrix"],conv_matrix)
+    new_img_matrix=ImgLib().convolution2(image_info["matrix"],conv_matrix)
 
     new_img_matrix=new_img_matrix.astype(np.uint8)
     new_img=Image.fromarray(new_img_matrix)
@@ -180,3 +180,28 @@ def _interpolation(request):
     image_info["list"]=None
     image_info["pgm_name"]=new_image_name+".pgm"
     return JsonResponse(image_info)
+
+def _median_filter(request):
+    voisinage=int(request.POST.get("voisinage",0))
+    img_info=save_image(request.FILES["imguploaded"],None)
+    median_matrix=ImgLib.median_filter(img_info["matrix"],voisinage)
+
+    new_median_matrix=median_matrix.astype(np.uint8)
+    new_img=Image.fromarray(new_median_matrix)
+    #on definit un nouveau nom pour notre image
+    extension=img_info["extension"]
+    if(extension.lower()==".pgm"):
+        extension=".png"
+    
+    new_image_name=get_random_string(24)+extension
+
+    new_img.save(result_path+new_image_name)
+
+    #sauvegarde au format pgm de l'image
+    ImgLib.save_matrix_as_pgm(new_median_matrix,new_image_name)
+
+    img_info["matrix"]=None
+    img_info["saved_name"]=new_image_name
+    img_info["list"]=None
+    img_info["pgm_name"]=new_image_name+".pgm"
+    return JsonResponse(img_info)

@@ -6,6 +6,10 @@ import os
 import numpy as np
 import random,math
 
+img_path="imgprocess/static/imageprocess/images/"
+hist_path=img_path+"hist/"
+hist_path_result=img_path+"histresult/"
+result_path=img_path+"result/"
 
 def get_random_string(length):
     letters = string.ascii_lowercase

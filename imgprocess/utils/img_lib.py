@@ -91,7 +91,7 @@ class ImgLib:
         differecence=max_pixel-min_pixel
         lumine=np.mean(img_matrix)
         dimesnion=img_matrix.shape
-        new_image=np.zeros(dimesnion,dtype=int)
+        new_image=np.zeros(dimesnion,dtype="uint8")
         for i in range(dimesnion[0]):
             for j in range(dimesnion[1]):
                 new_image[i][j]=int((255/differecence)*(img_matrix[i][j]-min_pixel))
@@ -154,7 +154,7 @@ class ImgLib:
         """That function take two image matrix in parameter, supooe to be the same and 
         make the summ"""
         dimension=img_matrix1.shape
-        new_matrix=np.zeros(dimension)
+        new_matrix=np.zeros(dimension,dtype="uint8")
         for i in range(dimension[0]):
             for j in range(dimension[1]):
                 pixel=img_matrix1[i][j]*mult_fact_1+img_matrix2[i][j]*mult_fact_2
@@ -168,7 +168,7 @@ class ImgLib:
         """That function take two image matrix in parameter, supooe to be the same and 
         make the subtraction"""
         dimension=img_matrix1.shape
-        new_matrix=np.zeros(dimension)
+        new_matrix=np.zeros(dimension,dtype="uint8")
         for i in range(dimension[0]):
             for j in range(dimension[1]):
                 pixel=img_matrix1[i][j]*mult_fact_1-img_matrix2[i][j]*mult_fact_2
@@ -182,7 +182,7 @@ class ImgLib:
     def or_operation(cls,img_matrix1,img_matrix2):
         """Take to image matrix and make the or operation"""
         dimension=img_matrix1.shape
-        new_matrix=np.zeros(dimension)
+        new_matrix=np.zeros(dimension,dtype="uint8")
         for i in range(dimension[0]):
             for j in range(dimension[1]):
                 new_matrix[i][j]=int(img_matrix1[i][j])|int(img_matrix2[i][j])
@@ -192,7 +192,7 @@ class ImgLib:
     def and_operation(cls,img_matrix1,img_matrix2):
         """Take to image matrix and make the and operation"""
         dimension=img_matrix1.shape
-        new_matrix=np.zeros(dimension)
+        new_matrix=np.zeros(dimension,dtype="uint8")
         for i in range(dimension[0]):
             for j in range(dimension[1]):
                 new_matrix[i][j]=int(img_matrix1[i][j]) & int(img_matrix2[i][j])
@@ -230,13 +230,13 @@ class ImgLib:
         center=int((kernel.shape[1]-1)/2)
         dimension=img_matrix.shape
         kernel_shape=kernel.shape
-        new_img_matrix=np.zeros(img_matrix.shape,dtype=int)
+        new_img_matrix=np.zeros(img_matrix.shape,dtype="uint8")
         for i in range(center,dimension[0]-center):
             for j in range(center,dimension[1]-center):
                 pixel_somme=0
                 for u in range(kernel_shape[0]):
                     for v in range(kernel_shape[1]):
-                        pixel_somme+=img_matrix[i-u][j-v]*kernel[u][v]
+                        pixel_somme+=img_matrix[i-u-1][j-v-1]*kernel[u][v]
                 pixel_somme=int(pixel_somme)
                 if(pixel_somme<0):
                     pixel_somme=0
@@ -283,7 +283,17 @@ class ImgLib:
         with open("imgprocess/static/imageprocess/images/result/"+name+".pgm","w+") as f:
             f.write(data_to_write)
 
-
+    @classmethod
+    def median_filter(cls,img_matrix,voisinage):
+        center=int(voisinage/2)
+        dimension=img_matrix.shape
+        new_img_matrix=np.zeros(img_matrix.shape,dtype=int)
+        for i in range(center,dimension[0]-center):
+            for j in range(center,dimension[1]-center):
+                voisinnage=img_matrix[i-center:i+center+1,j-center:j+center+1]
+                #print(voisinnage.shape)
+                new_img_matrix[i][j]=np.median(np.reshape(voisinnage,voisinage*voisinage))
+        return new_img_matrix
 
 
 
