@@ -14,7 +14,7 @@ $(function (e) {
     $("#download-pgm-result").click(function(){
         var dname=$(this).attr("data-download")
         $.get($(this).attr("data-url"),{download_name:dname},function(e){
-            console.log("bojnour")
+            
         });
     });
 
@@ -27,6 +27,7 @@ $(function (e) {
         $("#image-viewver").fadeIn(1000)
     });
 
+//exemple de requete ajax
     $("#form_upload_image").submit(function (r) {
         form_data = new FormData(this)
         $.ajax({
@@ -114,6 +115,44 @@ $(function (e) {
         });
         return false;
     });
+
+    $(".sober-horizontal").click(function(){
+        $("#kernel").val("-1 -2 -1\n0 0 0\n1 2 1")
+    });
+    $(".sober-vertical").click(function(){
+        $("#kernel").val("-1 0 1\n-2 0 2\n-1 0 1")
+    });
+    $(".filtre-moyenneur").click(function(){
+        $("#kernel").val("0.1111 0.1111 0.1111\n0.1111 0.1111 0.1111\n0.1111 0.1111 0.1111")
+    });
+
+    $(".filtre-laplacien").click(function(){
+        $("#kernel").val("0 1 0\n1 -4 1\n0 1 0")
+    });
+
+    $(".filtre-prewit-x").click(function(){
+        $("#kernel").val("-1 0 1\n-1 0 1\n-1 0 1")
+    });
+
+    $(".filtre-prewit-y").click(function(){
+        $("#kernel").val("-1 -1 -1\n0 0 0\n1 1 1")
+    });
+    $(".filtre-constrate").click(function(){
+        $("#kernel").val("0 -1 0\n-1 5 -1\n0 -1 1")
+    });
+    $(".filtre-repoussage").click(function(){
+        $("#kernel").val("-2 1 0\n-1 1 1\n0 1 2")
+    });
+
+    $(".filtre-flou").click(function(){
+        $("#kernel").val("1 1 1\n1 1 1\n1 1 1")
+    });
+
+    $(".filtre-gaussien").click(function(){
+        $("#kernel").val("0.0625 0.125 0.0625\n0.125 0.25 0.125\n0.0625 0.125 0.0625")
+    });
+
+
 
 });
 

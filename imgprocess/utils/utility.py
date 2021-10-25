@@ -50,7 +50,7 @@ def save_image(image_file,image_path):
         #print(len(img_list_data))
         test_elemen=img_list_data[0]
         type_elt=type(test_elemen)
-        img_matrix=np.zeros(img_final.size,dtype=object)
+        img_matrix=np.zeros(img_final.size,dtype="uint8")
         if(type_elt is int):
             type_elt="int"
             img_matrix=np.reshape(img_list_data,img_final.size)
@@ -114,7 +114,7 @@ def get_same_matrix(matrix1,matrix2):
         matrix1=np.concatenate((matrix1,news_rows),axis=0)
     elif(diff_row>0):
         result["more_row"]=1
-        news_rows=np.zeros((result["diff_row"],matrix2.shape[1]),dtype=int)
+        news_rows=np.zeros((result["diff_row"],matrix2.shape[1]),dtype="uint8")
         matrix2=np.concatenate((matrix2,news_rows),axis=0)
     
     result["matrix1"]=matrix1

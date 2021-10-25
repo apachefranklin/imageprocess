@@ -17,7 +17,7 @@ class ImgLib:
         h_normalize=[elt/nb_pixel for elt in h]
         #normalisation of probality density
         c_normalize=[]
-        new_image=np.zeros(img_matrix.shape,dtype=int)
+        new_image=np.zeros(img_matrix.shape,dtype="uint8")
         #Calcul des densite de probabablite
         #for i in range(len(h_normalize)):
         #    c_i=0.0

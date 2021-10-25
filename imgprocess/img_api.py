@@ -32,7 +32,7 @@ def _constrate(request):
     if(image_info["extension"].lower()==".pgm"):
         extension=".png"
    
-    img=Image.fromarray(final_matrix.astype(np.uint8))
+    img=Image.fromarray(final_matrix)
     new_image_name=get_random_string(20)+extension
     img.save("imgprocess/static/imageprocess/images/result/"+new_image_name)
     ImgLib.save_matrix_as_pgm(final_matrix,new_image_name)
@@ -46,11 +46,8 @@ def _egalisation_histogramme(request):
     #we get the name of the preview_histogramme
     preview_his_name=get_random_string(20)+".png"
     plt.hist(image_info["list"])
-
     plt.savefig(hist_path+preview_his_name)
     plt.close()
-
-   
     image_info["preview_hist"]=preview_his_name
 
     #we call function of equalisation on the matrix of image

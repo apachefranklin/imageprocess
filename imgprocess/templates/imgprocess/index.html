@@ -4,7 +4,10 @@
 {% block content %}
 <br />
 <div class="container">
+    <h3>Cette Appplication a été concu par l'etudiant <b>DONGMO NZOIYEM FRANKLIN</b> de matricule <b>15T2607</b> Dans le cadre du TP de computer vision</h3>
+    <h2>Elle prend en compte les images PGM,jpg,png qui n'utilise pas le systeme RGB</h2>
     <div class="row image-operation-card">
+
         <div class="col-lg-3 col-12">
             <a class="nav-link" href="{% url 'imageprocess:constraste' %}">
                 <div class="card shadow-lg border-0">
@@ -57,18 +60,10 @@
                     </a>
                 </div>
                 
-                <div class="col-lg-4 col-6 col-md col-sm">
+                <div class="col-lg-6 col-6 col-md col-sm">
                     <a class="nav-link" href="{% url 'imageprocess:convolution' %}">
                         <div class="card shadow border-0">
                             Convolution
-                        </div>        
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-6 col-md col-sm">
-                    <a class="nav-link" href="">
-                        <div class="card shadow border-0">
-                            NON lieneaire
                         </div>        
                     </a>
                 </div>
